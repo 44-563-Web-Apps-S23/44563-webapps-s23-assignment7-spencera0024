@@ -37,20 +37,41 @@
 		</p>
 		<input type="text" id="input">
 		<button onclick="makeNewDiv()">Add value</button>
+
+		<button id="get" onclick="get()">Get</button>
+		<button id="delay" onclick="delay()">Delay</button>
 	
 	
 </body>
 <script>
-	function makeNewDiv(){
+	function makeNewDiv() {
 		/* make the div and its text */
 		let element = document.createElement("div")
 		element.innerHTML = document.getElementById("input").value
 		element.className = "delayQ"
 
 		/* add it to the container */
-		let container = document.getElementById('target')
+		let container = document.getElementById("target")
 		container.appendChild(element)
-		
+	}
+
+	function get() {
+		let queueItems = document.getElementsByClassName("delayQ")
+		let length = queueItems.length
+		if (length > 0) {
+			queueItems[0].remove()
+		}
+	}
+
+	function delay() {
+		let queueItems = document.getElementsByClassName("delayQ")
+		let length = queueItems.length
+		if (length > 1) {
+			let itemToAdd = queueItems[0]
+			queueItems[0].remove()
+			let container = document.getElementById("target")
+			container.insertBefore(itemToAdd, container.lastChild)
+		}
 	}
 </script>
 </html>	
